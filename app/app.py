@@ -9,7 +9,7 @@ import joblib
 
 st.set_page_config(
     page_title="Used Car Price Appraiser",
-    page_icon="🚗",
+    page_icon="https://www.vecteezy.com/free-vector/car-icon",
     layout="wide"
 )
 

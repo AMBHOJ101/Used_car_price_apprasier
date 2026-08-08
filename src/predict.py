@@ -35,6 +35,6 @@ def predict_car_price(car_data):
 
     encoded = encoder.transform(car_df)
 
-    prediction = rf_model.predict(encoded)
+    prediction = model.predict(encoded)
 
     return prediction[0]

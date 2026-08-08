@@ -63,7 +63,7 @@ numerical_features = [
 # PAGE HEADER
 # ============================================================
 
-st.title("🚗 Used Car Price Appraiser")
+st.title("Used Car Price Appraiser")
 
 st.markdown(
     """

@@ -72,8 +72,21 @@ st.markdown(
     """
 )
 
+# ============================================================
+# LOADING DATASET
+# ============================================================
+
 st.divider()
 
+@st.cache_data
+def load_dataset():
+
+    return pd.read_csv(
+        "data/used_cars.csv"
+    )
+
+
+df = load_dataset()
 
 # ============================================================
 # VEHICLE INFORMATION
@@ -86,14 +99,14 @@ col1, col2, col3 = st.columns(3)
 
 with col1:
 
-    brand = st.text_input(
-        "Brand",
-        value="Toyota"
+    brand = st.selectbox(
+    "Brand",
+    sorted(df["brand"].dropna().unique())
     )
 
-    model_name = st.text_input(
+    model_name = st.selectbox(
         "Model",
-        value="Camry XSE"
+        sorted(df["model_name"].dropna().unique())
     )
 
     model_year = st.number_input(
@@ -115,32 +128,32 @@ with col2:
         step=1000
     )
 
-    fuel_type = st.text_input(
-        "Fuel Type",
-        value="Gasoline"
+    fuel_type = st.selectbox(
+    "Fuel Type",
+    sorted(df["fuel_type"].dropna().unique())
     )
 
-    engine = st.text_input(
+    engine = st.selectbox(
         "Engine",
-        value="2.5L I4"
+        sorted(df["engine"].dropna().unique())
     )
 
 
 with col3:
 
-    transmission = st.text_input(
-        "Transmission",
-        value="Automatic"
+    transmission = st.selectbox(
+    "Transmission",
+    sorted(df["transmission"].dropna().unique())
     )
 
-    ext_col = st.text_input(
-        "Exterior Color",
-        value="White"
+    ext_col = st.selectbox(
+    "Exterior Color",
+    sorted(df["ext_col"].dropna().unique())
     )
 
-    int_col = st.text_input(
-        "Interior Color",
-        value="Black"
+    int_col = st.selectbox(
+    "Interior Color",
+    sorted(df["int_col"].dropna().unique())
     )
 
 

@@ -106,7 +106,7 @@ with col1:
 
     model_name = st.selectbox(
         "Model",
-        sorted(df["model_name"].dropna().unique())
+        sorted(df["model"].dropna().unique())
     )
 
     model_year = st.number_input(

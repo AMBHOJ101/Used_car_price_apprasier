@@ -211,7 +211,7 @@ def create_input_dataframe():
 
     car_data["mileage_per_year"] = (
         car_data["mileage"] /
-        car_data["vehicle_age"].replace(0, 1)
+        car_data["vehicle_age"]
     )
 
 

@@ -50,15 +50,6 @@ categorical_features = [
     "clean_title"
 ]
 
-numerical_features = [
-    "model_year",
-    "mileage",
-    "accident",
-    "vehicle_age",
-    "mileage_per_year"
-]
-
-
 # ============================================================
 # PAGE HEADER
 # ============================================================
@@ -67,16 +58,18 @@ st.title(" Used Car Price Appraiser")
 
 st.markdown(
     """
-    Enter the vehicle specifications below to estimate
-    its expected used-car market price.
+    ### Estimate the market price of a used vehicle
+
+    Enter the vehicle's specifications and condition below.
+    The machine learning model will estimate its expected
+    market price.
     """
 )
 
+st.divider()
 # ============================================================
 # LOADING DATASET
 # ============================================================
-
-st.divider()
 
 @st.cache_data
 def load_dataset():
@@ -184,38 +177,6 @@ with col5:
         index=0
     )
 
-
-# ============================================================
-# ENGINEERED FEATURES
-# ============================================================
-
-st.subheader("📊 Derived Vehicle Features")
-
-col6, col7 = st.columns(2)
-
-
-with col6:
-
-    vehicle_age = st.number_input(
-        "Vehicle Age",
-        min_value=0,
-        max_value=100,
-        value=5,
-        step=1
-    )
-
-
-with col7:
-
-    mileage_per_year = st.number_input(
-        "Mileage Per Year",
-        min_value=0.0,
-        max_value=500000.0,
-        value=20000.0,
-        step=1000.0
-    )
-
-
 st.divider()
 
 
@@ -225,7 +186,7 @@ st.divider()
 
 def create_input_dataframe():
 
-    input_data = {
+    car_data = {
         "brand": brand,
         "model": model_name,
         "model_year": model_year,
@@ -237,11 +198,24 @@ def create_input_dataframe():
         "int_col": int_col,
         "accident": accident,
         "clean_title": clean_title,
-        "vehicle_age": vehicle_age,
-        "mileage_per_year": mileage_per_year
     }
 
-    return pd.DataFrame([input_data])
+    # -----------------------------------------------------
+    # Feature Engineering
+    # -----------------------------------------------------
+
+    car_data["vehicle_age"] = (
+        2026 - car_data["model_year"]
+    )
+
+
+    car_data["mileage_per_year"] = (
+        car_data["mileage"] /
+        car_data["vehicle_age"].replace(0, 1)
+    )
+
+
+    return pd.DataFrame([car_data])
 
 
 # ============================================================

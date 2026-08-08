@@ -9,7 +9,7 @@ import joblib
 
 st.set_page_config(
     page_title="Used Car Price Appraiser",
-    page_icon="C:\Users\ambho\Desktop\Summer School IIT Jammu\Project\Used_car_price_apprasier\assets\image.png",
+    page_icon="assets\image.png",
     layout="wide"
 )
 
@@ -63,7 +63,7 @@ numerical_features = [
 # PAGE HEADER
 # ============================================================
 
-st.title("Used Car Price Appraiser")
+st.title(" Used Car Price Appraiser")
 
 st.markdown(
     """

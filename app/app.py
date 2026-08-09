@@ -22,7 +22,7 @@ st.set_page_config(
 def load_artifacts():
 
     model = joblib.load(
-        "models/used_car_price_model .pkl"
+        "models/used_car_price_model.pkl"
     )
 
     encoder = joblib.load(
